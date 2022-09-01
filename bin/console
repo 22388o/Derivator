@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'derivator'
+require 'derivator/refinements'
+
+include Derivator
+
+using Refinements
+
+require 'irb'
+IRB.start(__FILE__)

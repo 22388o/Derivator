@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+git_path = File.expand_path("../.git", __dir__)
+
+if File.exist?(git_path)
+  lib_path = File.expand_path("../lib", __dir__)
+  $:.unshift(lib_path)
+end
+
+require 'derivator'
+
+curve = ARGV.first || 'secp256k1'
+seed_hex = STDIN.gets.chomp
+key = Derivator::Key.from_seed(seed_hex, curve.to_sym)
+puts "#{key.private_key_hex} #{key.chain_code_hex}"
